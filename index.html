@@ -1,165 +1,446 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Michael Green – Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <title>Michael Green – Aerospace Engineering</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #f5f2ec;
-      --ink: #1a1a1a;
-      --accent: #c84b2f;
-      --border: #1a1a1a;
+      --bg:      #f4f1ea;
+      --surface: #ede9df;
+      --border:  #1a1a1a;
+      --text:    #1a1a1a;
+      --muted:   #888;
+      --shadow:  4px 4px 0px #1a1a1a;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
-      color: var(--ink);
-      font-family: 'DM Mono', monospace;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      line-height: 1.7;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
 
-    /* NAV */
-    nav {
+    a { color: var(--text); text-decoration: none; }
+
+    /* ── CENTERED COLUMN — 25% wider than before (780 → 975) ── */
+    .container {
+      max-width: 975px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 1.75rem 0 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .header-inner {
       display: flex;
+      align-items: flex-end;
       justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 2.5rem;
-      border-bottom: 1.5px solid var(--border);
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
 
-    nav .logo {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.3rem;
-      letter-spacing: 0.02em;
+    .nav-name {
+      font-family: 'Lora', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      padding-left: 1.75rem;   /* aligns left edge with who am i box content */
+      padding-top: 1rem;       /* pushes it down */
     }
 
-    nav a {
-      text-decoration: none;
-      color: var(--ink);
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding-bottom: 2px;
-      border-bottom: 1.5px solid transparent;
-      transition: border-color 0.2s;
-    }
-
-    nav a:hover, nav a.active {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    nav .links { display: flex; gap: 2rem; }
-
-    /* PAGE LAYOUT */
-    main {
-      flex: 1;
+    .header-links {
       display: flex;
-      flex-direction: column;
+      gap: 0.55rem;
+      flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
-      padding: 3rem 1rem;
     }
 
-    /* MIDDLE THIRD RECTANGLE */
-    .card {
-      width: 33.333%;
-      border: 1.5px solid var(--border);
-      padding: 3rem 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      animation: fadeUp 0.6s ease both;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .card .tag {
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .card h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.4rem;
-      line-height: 1.15;
-      font-weight: 400;
-    }
-
-    .card p {
-      font-size: 0.82rem;
-      line-height: 1.75;
-      color: #555;
-    }
-
-    .card .divider {
-      width: 2rem;
-      height: 1.5px;
-      background: var(--accent);
-    }
-
-    .card .cta {
+    .header-links a {
       display: inline-block;
-      margin-top: 0.5rem;
-      font-size: 0.75rem;
+      border: 1px solid var(--border);
+      padding: 0.32rem 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      box-shadow: var(--shadow);
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .header-links a:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    /* ── PAGE CONTENT ── */
+    .page {
+      padding-bottom: 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+    }
+
+    /* ── SECTION BOX — border restored, no shadow ── */
+    .section-box {
+      border: 1px solid var(--border);
+      padding: 1.6rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      text-decoration: none;
-      color: var(--ink);
-      border-bottom: 1.5px solid var(--ink);
-      padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
-      width: fit-content;
+      color: var(--muted);
     }
 
-    .card .cta:hover {
-      color: var(--accent);
-      border-color: var(--accent);
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      opacity: 0.15;
     }
 
-    /* FOOTER */
-    footer {
+    /* ── WHO AM I ── */
+    .whoami {
+      display: grid;
+      grid-template-columns: 1fr 155px;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .whoami-text h1 {
+      font-family: 'Lora', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 1rem;
+      line-height: 1.35;
+    }
+
+    .whoami-text p {
+      font-family: 'Lora', serif;
+      color: #4a4a4a;
+      font-size: 0.9rem;
+      line-height: 1.9;
+      margin-bottom: 0.6rem;
+    }
+
+    .whoami-text p:last-child { margin-bottom: 0; }
+
+    .blank {
+      color: var(--muted);
+      font-style: italic;
+      border-bottom: 1px dashed #bbb;
+    }
+
+    .photo-box {
+      width: 155px;
+      height: 155px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
       text-align: center;
-      padding: 1.25rem;
-      font-size: 0.7rem;
+      flex-shrink: 0;
+      box-shadow: var(--shadow);
+    }
+
+    /* ── CARD GRID — individual cards keep their border + shadow ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.9rem;
+    }
+
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 1rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
       letter-spacing: 0.1em;
-      color: #aaa;
-      border-top: 1px solid #ddd;
+      text-transform: uppercase;
+    }
+
+    .card-value {
+      font-family: 'Lora', serif;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .card-value.blank-card {
+      font-family: 'JetBrains Mono', monospace;
+      color: #bbb;
+      font-style: italic;
+      font-size: 0.68rem;
+    }
+
+    /* ── LINK BUTTONS ── */
+    .link-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .link-btn {
+      display: inline-block;
+      border: 1px solid var(--border);
+      padding: 0.32rem 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      box-shadow: var(--shadow);
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .link-btn:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    /* ── CONTACT MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 2rem 2.25rem;
+      min-width: 290px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .modal h2 {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal a {
+      font-family: 'Lora', serif;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .modal a:hover { text-decoration: underline; }
+
+    .modal-close {
+      align-self: flex-end;
+      background: none;
+      border: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      padding: 0.18rem 0.6rem;
+      cursor: pointer;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.06em;
+      box-shadow: var(--shadow);
+    }
+
+    .modal-close:hover { background: var(--text); color: var(--bg); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 1.25rem 0 2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.66rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── FADE IN ── */
+    .page > * {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 0.45s ease forwards;
+    }
+
+    .page > *:nth-child(1) { animation-delay: 0.05s; }
+    .page > *:nth-child(2) { animation-delay: 0.13s; }
+    .page > *:nth-child(3) { animation-delay: 0.21s; }
+    .page > *:nth-child(4) { animation-delay: 0.29s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 640px) {
+      .whoami { grid-template-columns: 1fr; }
+      .photo-box { width: 100%; height: 130px; }
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+      .container { padding: 0 1.25rem; }
+      .nav-name { font-size: 1.6rem; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <span class="logo">MG</span>
-    <div class="links">
-      <a href="index.html" class="active">Home</a>
-      <a href="projects.html">Projects</a>
-    </div>
-  </nav>
+<div class="container">
 
-  <main>
-    <div class="card">
-      <span class="tag">Landing Page</span>
-      <div class="divider"></div>
-      <h1>Hi, I'm Michael Green.</h1>
-      <p>Welcome to my portfolio. I build things and put them here. This is a placeholder — more coming soon.</p>
-      <a href="projects.html" class="cta">View my projects →</a>
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <span class="nav-name">Michael Green</span>
+      <div class="header-links">
+        <a href="https://www.linkedin.com/in/michael-green-514baa322/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/greenmd08" target="_blank">GitHub</a>
+        <a href="https://www.instagram.com/michael.green115/" target="_blank">Instagram</a>
+        <a href="#" onclick="openModal(event)">Contact</a>
+      </div>
     </div>
-  </main>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="page">
+
+    <!-- WHO AM I -->
+    <div class="section-box">
+      <span class="section-label">who am i</span>
+      <div class="section-divider"></div>
+      <div class="whoami">
+        <div class="whoami-text">
+          <h1>Hi all! I'm Michael Green.</h1>
+          <p>A current freshman at Purdue University majoring in Aerospace Engineering.</p>
+          <p>I am very interested in <span class="blank">[ fill in later ]</span></p>
+          <p>My other hobbies outside of school include <span class="blank">[ fill in later ]</span></p>
+          <p>Feel free to reach out to me on LinkedIn or by email!</p>
+        </div>
+        <div class="photo-box">[ photo<br>coming soon ]</div>
+      </div>
+    </div>
+
+    <!-- RANDOM -->
+    <div class="section-box">
+      <span class="section-label">random</span>
+      <div class="section-divider"></div>
+      <div class="card-grid">
+        <div class="card">
+          <span class="card-label">Camera</span>
+          <span class="card-value blank-card">[ coming soon ]</span>
+        </div>
+        <div class="card">
+          <span class="card-label">Hobbies</span>
+          <span class="card-value">Lifting · Hiking · Gundam</span>
+        </div>
+        <div class="card">
+          <span class="card-label">Favorite Artist</span>
+          <span class="card-value">Mac Miller</span>
+        </div>
+        <div class="card">
+          <span class="card-label">&nbsp;</span>
+          <span class="card-value blank-card">[ coming soon ]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="section-box">
+      <span class="section-label">stats</span>
+      <div class="section-divider"></div>
+      <div class="card-grid">
+        <div class="card">
+          <span class="card-label">School</span>
+          <span class="card-value">Purdue '30</span>
+        </div>
+        <div class="card">
+          <span class="card-label">Major</span>
+          <span class="card-value">Aerospace Engineering</span>
+        </div>
+        <div class="card">
+          <span class="card-label">Focus</span>
+          <span class="card-value blank-card">TBD</span>
+        </div>
+        <div class="card">
+          <span class="card-label">From</span>
+          <span class="card-value">Albany, NY</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="section-box">
+      <span class="section-label">links</span>
+      <div class="section-divider"></div>
+      <div class="link-buttons">
+        <a class="link-btn" href="mailto:green979@purdue.edu">Email</a>
+        <a class="link-btn" href="https://github.com/greenmd08" target="_blank">GitHub</a>
+        <a class="link-btn" href="https://www.linkedin.com/in/michael-green-514baa322/" target="_blank">LinkedIn</a>
+        <a class="link-btn" href="https://www.instagram.com/michael.green115/" target="_blank">Instagram</a>
+      </div>
+    </div>
+
+  </div>
 
   <footer>© 2026 Michael Green</footer>
+
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">× close</button>
+    <h2>get in touch</h2>
+    <a href="mailto:green979@purdue.edu">green979@purdue.edu</a>
+    <a href="https://github.com/greenmd08" target="_blank">GitHub</a>
+    <a href="https://www.instagram.com/michael.green115/" target="_blank">Instagram</a>
+    <a href="https://www.linkedin.com/in/michael-green-514baa322/" target="_blank">LinkedIn</a>
+  </div>
+</div>
+
+<script>
+  function openModal(e) { e.preventDefault(); document.getElementById('modal').classList.add('open'); }
+  function closeModal() { document.getElementById('modal').classList.remove('open'); }
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+</script>
 
 </body>
 </html>
