@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects – Michael Green</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f2ec;
+      --ink: #1a1a1a;
+      --accent: #c84b2f;
+      --border: #1a1a1a;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    nav .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.02em;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding-bottom: 2px;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    nav a:hover, nav a.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    nav .links { display: flex; gap: 2rem; }
+
+    /* PAGE LAYOUT */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1rem;
+    }
+
+    /* MIDDLE THIRD RECTANGLE */
+    .card {
+      width: 33.333%;
+      border: 1.5px solid var(--border);
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card .tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .card h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem;
+      line-height: 1.15;
+      font-weight: 400;
+    }
+
+    .card .divider {
+      width: 2rem;
+      height: 1.5px;
+      background: var(--accent);
+    }
+
+    .card .empty-note {
+      font-size: 0.8rem;
+      color: #888;
+      line-height: 1.7;
+    }
+
+    .card .placeholder {
+      border: 1px dashed #ccc;
+      padding: 1.25rem;
+      font-size: 0.75rem;
+      color: #bbb;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 1.25rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: #aaa;
+      border-top: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="logo">MG</span>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="active">Projects</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="card">
+      <span class="tag">Projects</span>
+      <div class="divider"></div>
+      <h1>My Work.</h1>
+      <p class="empty-note">Nothing here yet — projects will be added soon.</p>
+      <div class="placeholder">[ project coming soon ]</div>
+      <div class="placeholder">[ project coming soon ]</div>
+    </div>
+  </main>
+
+  <footer>© 2026 Michael Green</footer>
+
+</body>
+</html>
